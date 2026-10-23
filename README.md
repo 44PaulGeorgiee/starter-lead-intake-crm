@@ -1,3 +1,17 @@
+Version 1.1
+
+New Features
+✅ Automatic Welcome Email
+
+✅ Gmail Integration
+
+✅ Lead Confirmation Messages
+
+✅ Automated Lead ID Assignment
+
+Workflow
+Lead Submission ↓ Google Form ↓ Google Sheet ↓ Apps Script Trigger ↓ CRM Record ↓ Welcome Email
+
 Lead Intake CRM Starter
 Overview
 A lightweight CRM built using Google Forms, Google Sheets, Gmail, and Apps Script.
