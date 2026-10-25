@@ -1,8 +1,4 @@
-function sendWelcomeEmail(
-  name,
-  email,
-  leadId
-) {
+function sendWelcomeEmail(name, email, leadId) {
 
   GmailApp.sendEmail(
     email,
@@ -12,12 +8,12 @@ function sendWelcomeEmail(
 
 Thank you for reaching out to Starter Code Automations.
 
-We have successfully received your inquiry.
+We've successfully received your submission.
 
 Lead Reference Number:
 ${leadId}
 
-Our team will review your request and contact you shortly.
+Our team will review your inquiry and get back to you as soon as possible.
 
 Best regards,
 
