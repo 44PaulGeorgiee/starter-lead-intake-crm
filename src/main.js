@@ -19,6 +19,37 @@ function onFormSubmit(e) {
   const nextFollowUp = new Date();
   nextFollowUp.setDate(today.getDate() + 3);
 
+  // Lead Scoring Logic
+  let leadScore = 50;
+  let priority = "Low";
+
+  switch (businessType) {
+
+    case "Healthcare":
+      leadScore = 90;
+      priority = "High";
+      break;
+
+    case "BPO":
+      leadScore = 80;
+      priority = "High";
+      break;
+
+    case "Logistics":
+      leadScore = 70;
+      priority = "Medium";
+      break;
+
+    case "Entertainment":
+      leadScore = 60;
+      priority = "Medium";
+      break;
+
+    default:
+      leadScore = 50;
+      priority = "Low";
+  }
+
   crmSheet.appendRow([
     leadId,
     name,
@@ -30,7 +61,9 @@ function onFormSubmit(e) {
     "New Lead",
     today,
     today,
-    nextFollowUp
+    nextFollowUp,
+    leadScore,
+    priority
   ]);
 
   sendWelcomeEmail(
