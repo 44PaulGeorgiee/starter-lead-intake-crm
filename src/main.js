@@ -1,29 +1,42 @@
-function syncLeadsToCRM() {
+function onFormSubmit(e) {
 
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const crmSheet = SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getSheetByName("CRM");
 
-  const leadsSheet = ss.getSheetByName("Leads");
-  const crmSheet = ss.getSheetByName("CRM");
+  const values = e.values;
 
-  const leads = leadsSheet.getDataRange().getValues();
+  const name = values[1];
+  const email = values[2];
+  const phone = values[3];
+  const businessType = values[4];
+  const inquiry = values[5];
 
-  for (let i = 1; i < leads.length; i++) {
+  const leadId = "LD-" + Date.now();
 
-    const row = leads[i];
+  const today = new Date();
 
-    const name = row[1];
-    const email = row[2];
-    const phone = row[3];
+  const nextFollowUp = new Date();
+  nextFollowUp.setDate(today.getDate() + 3);
 
-    crmSheet.appendRow([
-      "LD-" + Date.now() + i,
-      name,
-      email,
-      phone,
-      "Google Form",
-      "New Lead"
-    ]);
-  }
+  crmSheet.appendRow([
+    leadId,
+    name,
+    email,
+    phone,
+    businessType,
+    inquiry,
+    "Google Form",
+    "New Lead",
+    today,
+    today,
+    nextFollowUp
+  ]);
+
+  sendWelcomeEmail(
+    name,
+    email,
+    leadId
+  );
 
 }
-
