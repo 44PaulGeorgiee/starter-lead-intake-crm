@@ -1,25 +1,8 @@
-function onFormSubmit(e) {
-
-  const crmSheet = SpreadsheetApp
-    .getActiveSpreadsheet()
-    .getSheetByName("CRM");
-
-  const values = e.values;
-
-  const name = values[1];
-  const email = values[2];
-  const phone = values[3];
-
-  const leadId = "LD-" + Date.now();
-
-  crmSheet.appendRow([
-    leadId,
-    name,
-    email,
-    phone,
-    "Google Form",
-    "New Lead"
-  ]);
+function sendWelcomeEmail(
+  name,
+  email,
+  leadId
+) {
 
   GmailApp.sendEmail(
     email,
@@ -27,16 +10,20 @@ function onFormSubmit(e) {
 
     `Hi ${name},
 
-Thank you for reaching out!
+Thank you for reaching out to Starter Code Automations.
 
-We've successfully received your inquiry.
+We have successfully received your inquiry.
 
-Lead ID: ${leadId}
+Lead Reference Number:
+${leadId}
 
-We'll review your submission and get back to you shortly.
+Our team will review your request and contact you shortly.
 
 Best regards,
+
 Paul John Rosellosa
+Founder
 Starter Code Automations`
   );
+
 }
